@@ -1,2 +1,2 @@
 # deluge
-Deluge Docker for TrueNAS SCALE
+Deluge Docker Container for TrueNAS SCALE
