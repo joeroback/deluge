@@ -1,7 +1,7 @@
 # Deluge
 Deluge docker container for TrueNAS SCALE.
 
-[GitHub Repo](https://github.com/joeroback/deluge])
+[GitHub Repo](https://github.com/joeroback/deluge)
 
 ## Environment
 
