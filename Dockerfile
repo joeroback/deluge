@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV PYTHON_EGG_CACHE="/deluge/config/plugins/.python-eggs"
 
-ENV DELUGE_LOGLEVEL="info"
+ENV DELUGE_LOGLEVEL="warning"
 ENV PUID=1000
 ENV PGID=1000
 ENV TZ="America/Denver"
