@@ -1,7 +1,23 @@
 # Deluge
 Deluge docker container for TrueNAS SCALE.
 
-[GitHub Repo](https://github.com/joeroback/deluge)
+## Pull
+```
+docker pull ghcr.io/joeroback/deluge:latest
+```
+
+## run
+```
+# need to specific port to set in deluge settings and open up on your router
+docker run \
+  --name deluge \
+  --port 8112:8112/tcp \
+  --port 61234:61234/tcp \
+  --port 61234:61234/udp \
+  --volume <path>:/deluge/config \
+  --volume <path>:/deluge/downloads \
+  ghcr.io/joeroback/deluge:latest
+```
 
 ## Environment
 
