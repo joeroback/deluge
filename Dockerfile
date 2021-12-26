@@ -13,10 +13,10 @@ ENV TZ="America/Denver"
 
 RUN \
     apt-get update && \
-    apt-get install --yes \
+    apt-get install --yes --no-install-recommends \
         apt-utils && \
     apt-get dist-upgrade --yes && \
-    apt-get install --yes \
+    apt-get install --yes --no-install-recommends \
         bash \
         coreutils \
         curl \
@@ -25,7 +25,7 @@ RUN \
         supervisor \
         tzdata \
         util-linux && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C5E6A5ED249AD24C && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8EED8FB4A8E6DA6DFDF0192BC5E6A5ED249AD24C && \
     echo "deb http://ppa.launchpad.net/deluge-team/stable/ubuntu bionic main" >> /etc/apt/sources.list.d/deluge.list && \
     echo "deb-src http://ppa.launchpad.net/deluge-team/stable/ubuntu bionic main" >> /etc/apt/sources.list.d/deluge.list && \
     apt-get update && \
