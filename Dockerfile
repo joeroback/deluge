@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
 
+LABEL org.opencontainers.image.source="https://github.com/joeroback/deluge"
+
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE="true"
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV PYTHON_EGG_CACHE="/deluge/config/plugins/.python-eggs"
