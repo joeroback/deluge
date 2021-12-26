@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE="true"
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV PYTHON_EGG_CACHE="/deluge/config/plugins/.python-eggs"
 
@@ -16,9 +17,8 @@ RUN \
     apt-get install --yes \
         bash \
         coreutils \
-        curl \
         gnupg \
-        less \
+        openssl \
         supervisor \
         tzdata \
         util-linux && \
@@ -44,6 +44,21 @@ VOLUME /deluge/config /deluge/downloads
 
 HEALTHCHECK --interval=1m --timeout=5s \
     CMD curl --fail --silent --output /dev/null http://localhost:8112 || exit 1
+
+# fix for weak ssl used on some trackers
+RUN \
+    echo "openssl_conf = default_conf" > /etc/ssl/openssl_weak.cnf && \
+    cat /etc/ssl/openssl.cnf >> /etc/ssl/openssl_weak.cnf && \
+    echo "\
+[default_conf]\n\
+ssl_conf = ssl_sect\n\
+[ssl_sect]\n\
+system_default = system_default_sect\n\
+[system_default_sect]\n\
+MinProtocol = TLSv1.2\n\
+CipherString = DEFAULT:@SECLEVEL=1\n\
+" >> /etc/ssl/openssl_weak.cnf && \
+    ln -sf /etc/ssl/openssl_weak.cnf /etc/ssl/openssl.cnf
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entry-point.sh /entry-point.sh
