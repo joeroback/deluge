@@ -18,6 +18,7 @@ RUN \
     apt-get dist-upgrade --yes && \
     apt-get install --yes --no-install-recommends \
         bash \
+        ca-certificates \
         coreutils \
         curl \
         gnupg \
