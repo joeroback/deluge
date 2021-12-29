@@ -8,7 +8,7 @@ docker pull ghcr.io/joeroback/deluge:latest
 
 ## run
 ```
-# need to specific port to set in deluge settings and open up on your router
+# make sure to add tcp/udp port, configure it in deluge settings, and add NAT port forward on your router
 docker run \
   --name deluge \
   --port 8112:8112/tcp \
